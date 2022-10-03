@@ -1,5 +1,6 @@
 package com.example;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,12 @@ public class FelineTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    @Test
+    public void getNotValidFood(){
+        Exception e = Assert.assertThrows(Exception.class, () -> feline.getFood("Тест"));
+        assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", e.getMessage());
+    }
+
     @Parameterized.Parameters
     public static Object[] getKittensCount() {
         return new Object[][]{
@@ -45,7 +52,7 @@ public class FelineTest {
         assertEquals(expectedResult, actualResult);
     }
 
-    @org.junit.Test
+    @Test
     public void getFamily() {
         assertEquals("Кошачьи", feline.getFamily());
     }

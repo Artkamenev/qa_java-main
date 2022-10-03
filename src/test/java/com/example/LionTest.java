@@ -1,5 +1,6 @@
 package com.example;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -17,6 +18,12 @@ public class LionTest {
 
     @Mock
     private Feline feline;
+
+    @Test
+    public void getNotValidLion(){
+        Exception e = Assert.assertThrows(Exception.class, () -> new Lion ("Трансгендер", feline));
+        assertEquals("Используйте допустимые значения пола животного - самей или самка", e.getMessage());
+    }
 
     @org.junit.Test
     public void getKittens() throws Exception {
